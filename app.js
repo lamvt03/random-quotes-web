@@ -42,16 +42,23 @@ var quotes = [
     }
 
 ]
+var pre_index = 1 + Math.floor(Math.random() * 10);
+window.onload = getQuote(pre_index);
+
 function getRanNum(range) {
-    return Math.floor(Math.random() * range);
+    var ran_num = Math.floor(Math.random() * range)
+    while(ran_num === pre_index)
+        ran_num = Math.floor(Math.random() * range);
+    return ran_num;
 }
 function getQuote(range) {
     var quote = document.querySelector('#quote');
     var author = document.querySelector('#author');
 
     var index = getRanNum(range);
+    pre_index = index;
     quote.innerText = quotes[index].quote;
     author.innerText = 'by ' + quotes[index].author;
 }
 
-window.onload = getQuote(3);
+
